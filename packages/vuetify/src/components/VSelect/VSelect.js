@@ -157,7 +157,11 @@ export default {
       return this.selectedItems.length > 0
     },
     listData () {
+      const scopeId = this.$vnode && this.$vnode.context.$options._scopeId
       return {
+        attrs: scopeId ? {
+          [scopeId]: true
+        } : null,
         props: {
           action: this.multiple && !this.isHidingSelected,
           color: this.color,
@@ -550,13 +554,16 @@ export default {
     },
     onEscDown (e) {
       e.preventDefault()
-      this.isMenuActive = false
+      if (this.isMenuActive) {
+        e.stopPropagation()
+        this.isMenuActive = false
+      }
     },
     onKeyDown (e) {
       const keyCode = e.keyCode
 
       // If enter, space, up, or down is pressed, open menu
-      if (!this.isMenuActive && [
+      if (!this.readonly && !this.isMenuActive && [
         keyCodes.enter,
         keyCodes.space,
         keyCodes.up, keyCodes.down

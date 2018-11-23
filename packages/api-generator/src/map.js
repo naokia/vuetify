@@ -1,11 +1,5 @@
 const sharedGridProps = [
   {
-    'name': 'id',
-    'type': 'String',
-    'default': 'undefined',
-    'source': null
-  },
-  {
     'name': 'tag',
     'type': 'String',
     'default': 'div',
@@ -106,25 +100,20 @@ const sharedGridProps = [
     'type': 'Boolean',
     'default': 'false',
     'source': null
-  },
-  {
-    'name': 'reverse',
-    'type': 'Boolean',
-    'default': 'false',
-    'source': null
-  },
-  {
-    'name': 'wrap',
-    'type': 'Boolean',
-    'default': 'false',
-    'source': null
   }
 ]
 
 const dataIterableProps = [
   {
     name: 'pagination',
-    sync: true
+    sync: true,
+    example: {
+      descending: 'boolean',
+      page: 'number',
+      rowsPerPage: 'number // -1 for All',
+      sortBy: 'string',
+      totalItems: 'number'
+    }
   },
   {
     name: 'filter',
@@ -540,7 +529,7 @@ module.exports = {
         'source': null
       },
       {
-        'name': 'order-(size)(0-12)',
+        'name': 'order-(size)(1-12)',
         'type': 'Boolean',
         'default': 'false',
         'source': null
@@ -550,8 +539,44 @@ module.exports = {
         'type': 'Boolean',
         'default': 'false',
         'source': null
+      },
+      {
+        'name': 'alignSelfStart',
+        'type': 'Boolean',
+        'default': 'false',
+        'source': null
+      },
+      {
+        'name': 'alignSelfEnd',
+        'type': 'Boolean',
+        'default': 'false',
+        'source': null
+      },
+      {
+        'name': 'alignSelfCenter',
+        'type': 'Boolean',
+        'default': 'false',
+        'source': null
+      },
+      {
+        'name': 'alignSelfBaseline',
+        'type': 'Boolean',
+        'default': 'false',
+        'source': null
+      },
+      {
+        'name': 'grow',
+        'type': 'Boolean',
+        'default': 'false',
+        'source': null
+      },
+      {
+        'name': 'shrink',
+        'type': 'Boolean',
+        'default': 'false',
+        'source': null
       }
-    ].concat(sharedGridProps)
+    ]
   },
   'v-footer': {
     slots: ['default']
@@ -598,6 +623,18 @@ module.exports = {
       },
       {
         'name': 'column',
+        'type': 'Boolean',
+        'default': 'false',
+        'source': null
+      },
+      {
+        'name': 'reverse',
+        'type': 'Boolean',
+        'default': 'false',
+        'source': null
+      },
+      {
+        'name': 'wrap',
         'type': 'Boolean',
         'default': 'false',
         'source': null
