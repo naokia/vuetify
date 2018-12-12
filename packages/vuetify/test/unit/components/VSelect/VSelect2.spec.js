@@ -241,18 +241,22 @@ test('VSelect2', ({ mount, compileToFunctions }) => {
 
   })
 
-  it('should react to different key down', async () => {
+  it.only('should react to different key down', async () => {
     const wrapper = mount(VSelect)
     const blur = jest.fn()
     wrapper.vm.$on('blur', blur)
 
-    wrapper.vm.onKeyDown({ keyCode: 9 })
+    const event = new Event('keydown')
+    event.keyCode = 9
+
+    wrapper.vm.onKeyDown(event)
 
     expect(blur).toBeCalled()
     expect(wrapper.vm.isMenuActive).toBe(false)
 
     for (let keyCode of [13, 32, 38, 40]) {
-      wrapper.vm.onKeyDown({ keyCode })
+      event.keyCode = keyCode
+      wrapper.vm.onKeyDown(event)
       expect(wrapper.vm.isMenuActive).toBe(true)
 
       wrapper.vm.isMenuActive = false
