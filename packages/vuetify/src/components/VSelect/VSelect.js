@@ -119,7 +119,7 @@ export default {
       return this.filterDuplicates(this.cachedItems.concat(this.items))
     },
     classes () {
-      return Object.assign({}, VTextField.computed.classes.call(this), {
+      return Object.assign({}, VTextField.options.computed.classes.call(this), {
         'v-select': true,
         'v-select--chips': this.hasChips,
         'v-select--chips--small': this.smallChips,
@@ -256,11 +256,12 @@ export default {
 
   methods: {
     /** @public */
-    blur () {
+    blur (e) {
       this.isMenuActive = false
       this.isFocused = false
       this.$refs.input && this.$refs.input.blur()
       this.selectedIndex = -1
+      this.onBlur(e)
     },
     /** @public */
     activateMenu () {
@@ -383,7 +384,7 @@ export default {
       ]
     },
     genInput () {
-      const input = VTextField.methods.genInput.call(this)
+      const input = VTextField.options.methods.genInput.call(this)
 
       input.data.domProps.value = null
       input.data.attrs.readonly = true
@@ -448,10 +449,16 @@ export default {
           if (onlyBools) {
             replacement = Object.keys(replacement).join(', ')
           } else {
-            replacement = JSON.stringify(replacement, null, multiple ? 2 : 0).replace(/"([^(")"]+)":/g, '$1:').replace(/"/g, '\'')
+            replacement = JSON.stringify(replacement, null, multiple ? 2 : 0)
+              .replace(/"([^(")"]+)":/g, '$1:')
+              .replace(/"/g, '\'')
           }
 
-          consoleWarn(`${props} ${multiple ? 'are' : 'is'} deprecated, use ${separator}:menu-props="${replacement}"${separator} instead`, this)
+          consoleWarn(
+            `${props} ${multiple ? 'are' : 'is'} deprecated, use ` +
+            `${separator}${onlyBools ? '' : ':'}menu-props="${replacement}"${separator} instead`,
+            this
+          )
         }
       }
 
@@ -581,24 +588,26 @@ export default {
       if (keyCode === keyCodes.tab) return this.onTabDown(e)
     },
     onMouseUp (e) {
-      const appendInner = this.$refs['append-inner']
+      if (this.hasMouseDown) {
+        const appendInner = this.$refs['append-inner']
 
-      // If append inner is present
-      // and the target is itself
-      // or inside, toggle menu
-      if (this.isMenuActive &&
-        appendInner &&
-        (appendInner === e.target ||
-        appendInner.contains(e.target))
-      ) {
-        this.$nextTick(() => (this.isMenuActive = !this.isMenuActive))
-      // If user is clicking in the container
-      // and field is enclosed, activate it
-      } else if (this.isEnclosed && !this.isDisabled) {
-        this.isMenuActive = true
+        // If append inner is present
+        // and the target is itself
+        // or inside, toggle menu
+        if (this.isMenuActive &&
+          appendInner &&
+          (appendInner === e.target ||
+          appendInner.contains(e.target))
+        ) {
+          this.$nextTick(() => (this.isMenuActive = !this.isMenuActive))
+        // If user is clicking in the container
+        // and field is enclosed, activate it
+        } else if (this.isEnclosed && !this.isDisabled) {
+          this.isMenuActive = true
+        }
       }
 
-      VTextField.methods.onMouseUp.call(this, e)
+      VTextField.options.methods.onMouseUp.call(this, e)
     },
     onScroll () {
       if (!this.isMenuActive) {
@@ -638,7 +647,7 @@ export default {
         // If we make it here,
         // the user has no selected indexes
         // and is probably tabbing out
-        VTextField.methods.onBlur.call(this, e)
+        this.blur(e)
       }
     },
     selectItem (item) {
