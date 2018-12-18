@@ -1,0 +1,94 @@
+{
+  "header": "# Grid system",
+  "headerText": "Vuetifyには12ポイントで分割できるグリッドシステムがあります。 <kbd>flex-box</kbd>を使用して構築されたグリッドは、アプリケーションのコンテンツをレイアウトするために使用されます。 これには、特定の画面サイズまたは画面の方向を対象にするために使用される5種類のメディアブレークポイントが含まれています。 グリッドコンポーネントの各種プロパティは、実際には定義されたプロパティから派生したクラスです。 これにより、これらのヘルパークラスをコンポーネントのプロパティとして簡単に指定でき、どこでもこれらのクラスを使用できます。",
+  "components": ["v-container', 'v-layout', 'v-flex', 'v-spacer"],
+  "examples": {
+    "usage": {
+      "desc": "`v-container`は要素が中央に集中したページに使うことができます。`fluid`プロパティを用いれば、表示幅を一杯にすることもできます。`v-layout`はセクションを区切るために使われ、`v-flex`を含んでいます。レイアウトの構造は次のようになります。**v-container** &raquo; **v-layout** &raquo; **v-flex** グリッド構造の各部分はflex-box要素です。`v-flex`は自動的にその子要素に<kbd>flex: 1 1 auto</kbd>を持たせるように設定します。",
+      "uninverted": true
+    },
+    "playground": {
+      "header": "### Layout playground",
+      "desc": "レイアウトのプロパティをテストできるシンプルなプレイグラウンドです。",
+      "uninverted": true
+    },
+    "offset": {
+      "header": "### Offset",
+      "desc": "Offsetは、まだ表示されていない要素を補正したり、コンテンツの位置を制御したりするのに便利です。 ブレークポイントと同様に、使用可能なサイズのoffsetを設定できます。これにより、アプリケーションのレイアウトをニーズに合わせて細かく調整することができます。",
+      "uninverted": true
+    },
+    "order": {
+      "header": "### Order",
+      "desc": "グリッドの各要素の順序を制御できます。 offsetと同様に、異なるサイズの異なる順番を設定することができます。 様々なアプリケーションに対応する特殊な画面レイアウトを設計します。",
+      "uninverted": true
+    },
+    "directionAndAlign": {
+      "header": "### Direction and Align",
+      "desc": "方向とアライメントをさまざまな方法で指定します。利用可能なすべての<kbd>flex-box</kbd>apiは直感的なヘルパープロパティを介して利用できます。",
+      "uninverted": true
+    },
+    "rowColumnBreakpoint": {
+      "header": "### Row and column breakpoints",
+      "desc": "Dynamically change your layout based upon resolution. **(resize your screen and watch the layout change to a `row` on small breakpoints)**",
+      "uninverted": true
+    },
+    "nestedGrid": {
+      "header": "### Nested grid",
+      "desc": "Grids can be nested, similar to other frameworks, in order to achieve very custom layouts.",
+      "uninverted": true
+    },
+    "uniqueLayouts": {
+      "header": "### Unique layouts",
+      "desc": "The power and flexibility of the Vuetify grid system allows you to create amazing user interfaces.",
+      "uninverted": true
+    },
+    "spacer": {
+      "header": "### v-spacer",
+      "desc": "The `v-spacer` component is useful when you want to fill available space or make space between two components."
+    },
+    "tags": {
+      "header": "### Html tags",
+      "desc": "Sometimes you will want to specify a layout item as a specific tag, such as a `section` or `li` element."
+    }
+  },
+  "props": {
+    "tag": "Mixins.Routable.props.tag",
+    "alignBaseline": "Align items to the baseline.",
+    "alignCenter": "Align items to the center.",
+    "alignContentCenter": "Align content to the center.",
+    "alignContentEnd": "Align content to the end.",
+    "alignContentSpaceAround": "Align content to the space around.",
+    "alignContentSpaceBetween": "Align content to the space between.",
+    "alignContentStart": "Align content to the start.",
+    "alignEnd": "Align items to the end.",
+    "alignStart": "Align items to the start.",
+    "d-{type}": "Specify to display an element as flex/inline-flex/block etc. Syntax is `d-{type}`. For example `d-flex`.",
+    "fillHeight": "Make sure that col element height is filled with parent and child. Important for Safari/Firefox if children is column element.",
+    "justifyCenter": "Justify content to the center.",
+    "justifyEnd": "Justify content to the end.",
+    "justifySpaceAround": "Justify content to the space around.",
+    "justifySpaceBetween": "Justify content to the space between.",
+    "justifyStart": "Justify content to the start.",
+    "v-container": {
+      "grid-list-{xs through xl}": "Sets the gutter between grid list items ranging from 2px to 24px",
+      "fluid": "Removes viewport size breakpoints"
+    },
+    "v-flex": {
+      "alignSelfStart": "Apply `align-self: start`\n\n[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self)",
+      "alignSelfEnd": "Apply `align-self: end`\n\n[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self)",
+      "alignSelfCenter": "Apply `align-self: center`\n\n[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self)",
+      "alignSelfBaseline": "Apply `align-self: baseline`\n\n[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self)",
+      "grow": "Apply `flex-grow: 1`\n\n[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow)",
+      "shrink": "Apply `flex-shrink: 1`\n\n[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink)",
+      "offset-(size)(0-12)": "offset-xs: extra small, offset-sm: small, offset-md: medium, offset-lg: large, offset-xl: extra large. Example: offset-xs3",
+      "order-(size)(1-12)": "order-xs: extra small, order-sm: small, order-md: medium, order-lg: large, order-xl: extra large. Example: order-xs3",
+      "(size)(1-12)": "xs: extra small, sm: small, md: medium, lg: large, xl: extra large - 1 through 12"
+    },
+    "v-layout": {
+      "row": "Sets flex direction to row",
+      "column": "Sets flex direction to column",
+      "reverse": "Reverses the currently selected direction (column, row).",
+      "wrap": "Allows children to wrap within the container if the elements use more than 100%."
+    }
+  }
+}
